@@ -2,36 +2,14 @@ import os
 import sys
 from loguru import logger
 from typing import Dict, Any
-from langgraph.graph import StateGraph, START, END, MessagesState
-from langchain_core.tools import tool
+from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode, tools_condition
 from langchain_core.messages import SystemMessage
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from helpers.model_config import fetch_ollama_model
-
-
-class SummarizationState(MessagesState):
-    pass
-
-
-@tool
-def read_file_tool(file_path: str) -> str:
-    """
-    Reads a text file and returns its content for summarization.
-    :param file_path: Path to the file to read
-    :return: The file's content as a string
-    """
-    try:
-        logger.info(f"Reading file: {file_path}")
-        with open(file_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        logger.info(f"Successfully read file with {len(content)} characters")
-        return content
-    except Exception as e:
-        error_msg = f"Error reading file: {e}"
-        logger.error(error_msg)
-        return error_msg
+from helpers.summarization.summarization_operations import read_file_tool
+from graph_nodes.document_summarizer_node.summarization_states import SummarizationState
 
 
 def summarization_llm_node(state) -> Dict[str, Any]:
