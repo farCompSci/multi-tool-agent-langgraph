@@ -8,16 +8,11 @@ from dotenv import load_dotenv
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from helpers.model_config import fetch_ollama_model
-from basic_math_node import basic_math_subgraph
-from advanced_math_node import advanced_math_subgraph
-from math_states import MathState
+from graph_nodes.math_nodes.basic_math_node import basic_math_subgraph
+from graph_nodes.math_nodes.advanced_math_node import advanced_math_subgraph
+from graph_nodes.math_nodes.math_states import MathState
+from graph_nodes.math_nodes.math_schemas import MathComplexityClassifier
 
-
-class MathComplexityClassifier(BaseModel):
-    message_type: Literal['basic_math', 'advanced_math'] = Field(
-        ...,
-        description='Classify if the message requires basic math capabilities or complex math capabilities.'
-    )
 
 
 def classify_math_complexity(state: MathState):
@@ -75,7 +70,7 @@ if __name__ == "__main__":
         'messages': [
             {
                 'role': 'user',
-                'content': 'Multiply 2 by 10. Divide the result by 5. Then subtract 3 from the result. Finally add 1 to the result.'
+                'content': 'Find the sum of 2 plus 10, times 5, and divided by 4.'
             }
         ]
     }
