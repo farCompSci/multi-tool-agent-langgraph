@@ -8,9 +8,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 from helpers.model_config import fetch_ollama_model
 from helpers.calculations.basic_calculator_operations import add, subtract, multiply, divide
-from math_states import State
+from math_states import MathState
 
-def basic_math_llm(state: State):
+def basic_math_llm(state: MathState):
     llm = fetch_ollama_model(model_name="llama3.2")
     try:
         llm_with_tools = llm.bind_tools([add, subtract, divide, multiply])
@@ -26,7 +26,7 @@ def basic_math_llm(state: State):
 
 
 # Build the basic math subgraph
-basic_math_subgraph = StateGraph(State)
+basic_math_subgraph = StateGraph(MathState)
 basic_math_subgraph.add_node("llm", basic_math_llm)
 basic_math_subgraph.add_node("tools", ToolNode([add, subtract, divide, multiply]))
 

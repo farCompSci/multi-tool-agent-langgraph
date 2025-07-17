@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 from helpers.model_config import fetch_ollama_model
 from basic_math_node import basic_math_subgraph
 from advanced_math_node import advanced_math_subgraph
-from math_states import State
+from math_states import MathState
 
 
 class MathComplexityClassifier(BaseModel):
@@ -20,7 +20,7 @@ class MathComplexityClassifier(BaseModel):
     )
 
 
-def classify_math_complexity(state: State):
+def classify_math_complexity(state: MathState):
     last_message = state["messages"][-1]
     llm = fetch_ollama_model("llama3.2")
     classifier_llm = llm.with_structured_output(MathComplexityClassifier)
@@ -40,7 +40,7 @@ def classify_math_complexity(state: State):
     return {"message_type": result.message_type}
 
 
-def math_tool_router(state: State):
+def math_tool_router(state: MathState):
     message_type = state.get("message_type", "advanced_math")
     if message_type == "basic_math":
         return {"next": "basic_math"}
@@ -48,7 +48,7 @@ def math_tool_router(state: State):
 
 
 # Build the graph
-main_graph = StateGraph(State)
+main_graph = StateGraph(MathState)
 main_graph.add_node("math_difficulty_classifier", classify_math_complexity)
 main_graph.add_node("math_tool_router", math_tool_router)
 main_graph.add_node("basic_math", basic_math_subgraph)  # Subgraph as a node!

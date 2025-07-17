@@ -8,11 +8,11 @@ from langgraph.prebuilt import tools_condition, ToolNode
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from helpers.calculations.advanced_calculation_operations import ask_wolfram
 from helpers.model_config import fetch_ollama_model
-from math_states import State
+from math_states import MathState
 
 # load_dotenv()
 
-def advanced_math_llm(state: State):
+def advanced_math_llm(state: MathState):
     """
     Processes advanced math queries using LLM with Wolfram Alpha integration
     :param state: State - The current state containing messages
@@ -32,7 +32,7 @@ def advanced_math_llm(state: State):
 
 
 # Build the advanced math subgraph
-advanced_math_subgraph = StateGraph(State)
+advanced_math_subgraph = StateGraph(MathState)
 advanced_math_subgraph.add_node("llm", advanced_math_llm)  # Remove the parentheses here
 advanced_math_subgraph.add_node("tools", ToolNode([ask_wolfram]))
 
