@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+graph_nodes/search_node/.env
 .envrc
 .venv
 env/
