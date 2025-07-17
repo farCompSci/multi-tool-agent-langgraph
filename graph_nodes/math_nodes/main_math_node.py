@@ -83,4 +83,4 @@ if __name__ == "__main__":
     for response in responses['messages']:
         response.pretty_print()
 
-    main_graph.get_graph().draw_mermaid_png(output_file_path='./graph_nodes/math_nodes/combined_math_nodes.png')
+    # main_graph.get_graph().draw_mermaid_png(output_file_path='./graph_nodes/math_nodes/combined_math_nodes.png')
