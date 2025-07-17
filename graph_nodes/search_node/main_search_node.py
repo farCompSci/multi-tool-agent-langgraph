@@ -9,11 +9,11 @@ from langchain_core.messages import SystemMessage
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from helpers.model_config import fetch_ollama_model
-from helpers.search.search_operations import search_tool
+from helpers.searching.search_operations import search_tool
 from graph_nodes.search_node.search_states import SearchState
 
 
-def search_node(state: SearchState) -> Dict[str, Any]:
+def search_node(state) -> Dict[str, Any]:
     try:
         llm = fetch_ollama_model("llama3.2")
         llm_with_search_tools = llm.bind_tools([search_tool])
@@ -27,7 +27,7 @@ def search_node(state: SearchState) -> Dict[str, Any]:
                 'role': 'system',
                 'content': (
                     "You are a helpful assistant. "
-                    "Use the search tool to find information when needed. "
+                    "Use the searching tool to find information when needed. "
                     "Once you have the answer from the tool, provide it to the user without calling the tool again."
                 )
             }
@@ -39,7 +39,7 @@ def search_node(state: SearchState) -> Dict[str, Any]:
         return {"messages": [result]}
 
     except Exception as e:
-        logger.error(f"Error in search node: {e}")
+        logger.error(f"Error in searching node: {e}")
         return {"messages": [{"role": "assistant", "content": f"Search error: {e}"}]}
 
 
@@ -64,4 +64,4 @@ if __name__ == "__main__":
     for i in response['messages']:
         i.pretty_print()
 
-    search_graph.get_graph().draw_mermaid_png(output_file_path="search.png")
+    search_graph.get_graph().draw_mermaid_png(output_file_path="searching.png")

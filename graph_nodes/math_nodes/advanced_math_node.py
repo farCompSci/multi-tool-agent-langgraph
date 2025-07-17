@@ -6,7 +6,7 @@ from langgraph.graph import StateGraph, START
 from langgraph.prebuilt import tools_condition, ToolNode
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from helpers.calculations.advanced_calculation_operations import ask_wolfram
+from helpers.calculating.advanced_calculation_operations import ask_wolfram
 from helpers.model_config import fetch_ollama_model
 from math_states import MathState
 

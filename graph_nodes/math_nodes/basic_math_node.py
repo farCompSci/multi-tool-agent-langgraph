@@ -7,7 +7,7 @@ from langgraph.prebuilt import ToolNode, tools_condition
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 from helpers.model_config import fetch_ollama_model
-from helpers.calculations.basic_calculator_operations import add, subtract, multiply, divide
+from helpers.calculating.basic_calculator_operations import add, subtract, multiply, divide
 from math_states import MathState
 
 def basic_math_llm(state: MathState):

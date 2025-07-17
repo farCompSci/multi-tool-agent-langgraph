@@ -8,7 +8,7 @@ from langchain_core.messages import SystemMessage
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from helpers.model_config import fetch_ollama_model
-from helpers.summarization.summarization_operations import read_file_tool
+from helpers.summarizing.summarization_operations import read_file_tool
 from graph_nodes.document_summarizer_node.summarization_states import SummarizationState
 
 
@@ -22,7 +22,6 @@ def summarization_llm_node(state) -> Dict[str, Any]:
 
         messages = state['messages']
 
-        # Add system message if not present
         if not messages or messages[0] != SystemMessage:
             system_message = {
                 'role': 'system',
@@ -34,13 +33,13 @@ def summarization_llm_node(state) -> Dict[str, Any]:
             }
             messages = [system_message] + messages
 
-        logger.info("Invoking LLM for file reading and summarization")
+        logger.info("Invoking LLM for file reading and summarizing")
         result = llm_with_tools.invoke(messages)
 
         return {"messages": [result]}
 
     except Exception as e:
-        logger.error(f"Error in summarization LLM node: {e}")
+        logger.error(f"Error in summarizing LLM node: {e}")
         return {"messages": [{"role": "assistant", "content": f"Error: {e}"}]}
 
 
@@ -61,7 +60,7 @@ if __name__ == "__main__":
     test_file_path = "test_document.txt"
     with open(test_file_path, 'w') as f:
         f.write("""
-        This is a sample document for testing the summarization functionality.
+        This is a sample document for testing the summarizing functionality.
         It contains multiple paragraphs and discusses various topics.
 
         The first topic is about artificial intelligence and its applications in modern technology.
@@ -95,4 +94,4 @@ if __name__ == "__main__":
         if os.path.exists(test_file_path):
             os.remove(test_file_path)
 
-    summarization_graph.get_graph().draw_mermaid_png(output_file_path="summarization.png")
+    summarization_graph.get_graph().draw_mermaid_png(output_file_path="summarizing.png")

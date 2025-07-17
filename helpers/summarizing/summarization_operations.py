@@ -5,7 +5,7 @@ from loguru import logger
 @tool
 def read_file_tool(file_path: str) -> str:
     """
-    Reads a text file and returns its content for summarization.
+    Reads a text file and returns its content for summarizing.
     :param file_path: Path to the file to read
     :return: The file's content as a string
     """

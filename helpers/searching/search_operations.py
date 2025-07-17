@@ -6,9 +6,9 @@ import os
 
 def _search_tool_inner(query: str, api_key: str) -> Optional[str]:
     """
-    Performs web search using Tavily API
-    :param query: str - The search query from the user
-    :return: str or None - The search result answer, or None if search fails
+    Performs web searching using Tavily API
+    :param query: str - The searching query from the user
+    :return: str or None - The searching result answer, or None if searching fails
     """
 
 
@@ -19,21 +19,21 @@ def _search_tool_inner(query: str, api_key: str) -> Optional[str]:
         result = client.search(query, include_answer=True)
 
         if result and "answer" in result and result["answer"]:
-            logger.info("Successfully retrieved search results")
+            logger.info("Successfully retrieved searching results")
             return result["answer"]
         else:
-            logger.warning("No answer found in search results")
-            return "No answer found for your search query."
+            logger.warning("No answer found in searching results")
+            return "No answer found for your searching query."
 
     except Exception as e:
-        logger.error(f"Failed to perform search. Details: {e}")
+        logger.error(f"Failed to perform searching. Details: {e}")
         return None
 
 
 @tool
 def search_tool(query:str):
     """
-    Performs web search using Tavily API, putting together the api key and query
+    Performs web searching using Tavily API, putting together the api key and query
     :param query:
     :return:
     """
