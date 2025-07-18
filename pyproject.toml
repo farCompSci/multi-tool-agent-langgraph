@@ -1,0 +1,23 @@
+[project]
+name = "assessmentintellectdesignarena"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bandit>=1.8.6",
+    "chromadb>=1.0.15",
+    "langchain-chroma>=0.2.4",
+    "langchain-community>=0.3.27",
+    "langchain-ollama>=0.3.4",
+    "langchain-openai>=0.3.28",
+    "langgraph>=0.5.3",
+    "loguru>=0.7.3",
+    "openai>=1.97.0",
+    "pypdf>=5.8.0",
+    "python-dotenv>=1.1.1",
+    "requests>=2.32.4",
+    "streamlit>=1.47.0",
+    "tavily-python>=0.7.9",
+    "wolframalpha>=5.1.3",
+]
