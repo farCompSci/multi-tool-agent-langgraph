@@ -68,6 +68,7 @@ To get this project up and running locally, follow these steps:
         export OPENAI_API_KEY="your_openai_api_key_here"
         ```
     *   You can also add this to a `.env` file in the root directory, and the `python-dotenv` package will load it.
+    *   You also need to setup Wolfram Alpha, and Tavily Search API keys and set them in `env`
 
 7.  **Initialize ChromaDB (for memory/retrieval):**
     The agent uses ChromaDB for long-term memory. Ensure the `chroma_db/` directory is created and accessible. The first run might initialize it.
