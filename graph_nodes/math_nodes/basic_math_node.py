@@ -8,7 +8,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 from helpers.model_config import fetch_ollama_model
 from helpers.calculating.basic_calculator_operations import add, subtract, multiply, divide
-from math_states import MathState
+from graph_nodes.math_nodes.math_states import MathState
+
 
 def basic_math_llm(state: MathState):
     llm = fetch_ollama_model(model_name="llama3.2")
@@ -16,14 +17,14 @@ def basic_math_llm(state: MathState):
         llm_with_tools = llm.bind_tools([add, subtract, divide, multiply])
         logger.info('Basic math tools bound to llama3.2 model')
 
-        # Pass the full message history, not just the last message
         response = llm_with_tools.invoke(state["messages"])
+
         return {"messages": [response]}
 
     except Exception as e:
         logger.error(f'There was an error binding the llm to the basic math tools. Details: {e}')
-        return {"messages": [{"role": "assistant", "content": f"Error: {e}"}]}
-
+        from langchain_core.messages import AIMessage
+        return {"messages": [AIMessage(content=f"Error: {e}")]}
 
 # Build the basic math subgraph
 basic_math_subgraph = StateGraph(MathState)

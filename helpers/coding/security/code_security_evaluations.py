@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 from helpers.model_config import fetch_ollama_model
 from graph_nodes.coder_node.coder_states import CoderState
 from graph_nodes.coder_node.coder_schemas import CodeSafetyClassifier
-from helpers.prompting.coder.prompt_templates import build_few_shot_prompt
+from helpers.prompting.coding.prompt_templates import build_few_shot_prompt
 
 
 def security_review_code(state: CoderState):

@@ -8,7 +8,7 @@ from langchain_core.messages import SystemMessage
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from helpers.model_config import fetch_ollama_model
-from helpers.summarizing.summarization_operations import read_file_tool
+from helpers.summarizing.summarization_operations import read_file_content
 from graph_nodes.document_summarizer_node.summarization_states import SummarizationState
 
 
@@ -18,7 +18,7 @@ def summarization_llm_node(state) -> Dict[str, Any]:
     """
     try:
         llm = fetch_ollama_model("llama3.2")
-        llm_with_tools = llm.bind_tools([read_file_tool])
+        llm_with_tools = llm.bind_tools([read_file_content])
 
         messages = state['messages']
 
@@ -26,9 +26,9 @@ def summarization_llm_node(state) -> Dict[str, Any]:
             system_message = {
                 'role': 'system',
                 'content': (
-                    "You are a helpful assistant that can read and summarize documents. "
-                    "When given a file path, use the read_file_tool to read the file, "
-                    "then provide a clear and concise summary of its contents."
+                    "You are a document summarizer. "
+                    "When given a file path, use the read_file_content to read the file. "
+                    "After reading the file, provide a brief and very concise summary of its contents."
                 )
             }
             messages = [system_message] + messages
@@ -46,7 +46,7 @@ def summarization_llm_node(state) -> Dict[str, Any]:
 # Build the graph
 summarization_graph = StateGraph(SummarizationState)
 summarization_graph.add_node("llm", summarization_llm_node)
-summarization_graph.add_node("tools", ToolNode([read_file_tool]))
+summarization_graph.add_node("tools", ToolNode([read_file_content]))
 
 summarization_graph.add_edge(START, "llm")
 summarization_graph.add_conditional_edges("llm", tools_condition)

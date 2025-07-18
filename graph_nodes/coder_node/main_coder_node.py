@@ -25,9 +25,9 @@ coder_graph_builder.add_edge("security_aggregation", "code_executor")
 coder_graph_builder.add_edge("code_executor", END)
 
 coder_graph = coder_graph_builder.compile()
-coder_graph.get_graph().draw_mermaid_png(output_file_path="code_generator.png")
 
 if __name__ == "__main__":
+    # For Testing Purposes
     state: CoderState = {
         'messages': [
             {'role': 'user',
@@ -37,3 +37,5 @@ if __name__ == "__main__":
     output = coder_graph.invoke(state)
     for message in output['messages']:
         message.pretty_print()
+
+    coder_graph.get_graph().draw_mermaid_png(output_file_path="code_generator.png")

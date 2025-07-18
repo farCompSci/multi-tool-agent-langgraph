@@ -23,8 +23,8 @@ def classify_math_complexity(state: MathState):
         {
             "role": "system",
             "content": """Classify the user input as either: 
-                       'basic_math': if it involves simple mathematical requests. Those include addition, division, multiplication, subtraction, or raising a number to a certain power.
-                       'advanced_math': if it involves complex mathematical requests. Those include things like derivatives, integrals, differential equations, and statistical questions. 
+                       'basic_math': if it involves simple mathematical requests. Those basic integer addition, subtraction, multiplications, and divisions.
+                       'advanced_math': if it involves complex mathematical requests. Those include things like derivatives, integrals, differential equations, and statistical questions. Generally if the operations extend beyond just basic integer-wise operations. 
                        """
         },
         {

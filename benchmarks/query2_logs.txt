@@ -1,0 +1,46 @@
+2025-07-18 08:00:58,135 - INFO - Initialized new Streamlit session with supervisor graph
+2025-07-18 08:01:02,905 - INFO - [streamlit_user] USER_INPUT: "What is the current exchange rate between USD and EUR? Once you have that, calculate how many Euros I would get for 500 US Dollars. Also, tell me a fun fact about currency."
+2025-07-18 08:01:02,906 - INFO - Processing user input: "What is the current exchange rate between USD and EUR? Once you have that, calculate how many Euros...
+2025-07-18 08:01:03,281 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-18 08:01:05,473 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-18 08:01:09,078 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-18 08:01:11,642 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-18 08:01:14,175 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:16,822 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:18,105 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-18 08:01:18,474 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:19,216 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:19,262 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-18 08:01:22,099 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-18 08:01:22,246 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-18 08:01:22,264 - INFO - [streamlit_user] AI_RESPONSE:
+2025-07-18 08:01:22,265 - INFO - [streamlit_user] AI_RESPONSE: The current exchange rate between USD and EUR is approximately 1 USD = 0.86 EUR. Please note that exchange rates can fluctuate constantly and may be different at the time of your inquiry. For the most up-to-date and accurate exchange rate, I recommend checking a reliable financial service or website.
+2025-07-18 08:01:22,266 - INFO - [streamlit_user] AI_RESPONSE:
+2025-07-18 08:01:22,267 - INFO - [streamlit_user] AI_RESPONSE: To calculate how many Euros you would get for 500 US Dollars at the exchange rate of 1 USD = 0.86 EUR:
+
+\[
+500 \, \text{USD} \times 0.86 \, \text{EUR/USD} = 430 \, \text{EUR}
+\]
+
+So, you would get approximately 430 Euros for 500 US Dollars.
+
+As for a fun fact about currency: Did you know that the word "currency" comes from the Latin word "currere," which means "to run"? This reflects the idea that currency is something that flows and circulates in the economy!
+2025-07-18 08:01:22,268 - INFO - [streamlit_user] SYSTEM_MESSAGE: Completed 3 tasks successfully.
+2025-07-18 08:01:22,268 - INFO - Successfully processed user input. Total messages: 8
+
+
+Console Text:
+Decompose the following user request: ""What is the current exchange rate between USD and EUR? Once you have that, calculate how many Euros I would get for 500 US Dollars. Also, tell me a fun fact about currency.""
+
+2025-07-18 08:01:11,642 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-18 08:01:11.662 | INFO     | helpers.supervisor.supervisor_operations:decompose_task_node:254 - Detailed Decomposition RAW: tasks=[Task(description='Find the current exchange rate between USD and EUR.', type='search', status='pending'), Task(description='Calculate how many Euros can be obtained for 500 US Dollars using the exchange rate from the previous step.', type='math', status='pending'), Task(description='Provide a fun fact about currency.', type='general_chat', status='pending')]
+2025-07-18 08:01:11.662 | INFO     | helpers.supervisor.supervisor_operations:decompose_task_node:259 - Decomposed tasks list generated: [{'description': 'Find the current exchange rate between USD and EUR.', 'type': 'search', 'status': 'pending'}, {'description': 'Calculate how many Euros can be obtained for 500 US Dollars using the exchange rate from the previous step.', 'type': 'math', 'status': 'pending'}, {'description': 'Provide a fun fact about currency.', 'type': 'general_chat', 'status': 'pending'}]
+2025-07-18 08:01:11.663 | INFO     | helpers.supervisor.supervisor_operations:process_queue_node:288 - Process Queue Node: Received task_queue: [{'description': 'Find the current exchange rate between USD and EUR.', 'type': 'search', 'status': 'pending'}, {'description': 'Calculate how many Euros can be obtained for 500 US Dollars using the exchange rate from the previous step.', 'type': 'math', 'status': 'pending'}, {'description': 'Provide a fun fact about currency.', 'type': 'general_chat', 'status': 'pending'}]
+2025-07-18 08:01:11.663 | INFO     | helpers.supervisor.supervisor_operations:process_queue_node:295 - Process Queue Node: Setting current_task: {'description': 'Find the current exchange rate between USD and EUR.', 'type': 'search', 'status': 'pending'}
+2025-07-18 08:01:14,175 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:14.195 | INFO     | graph_nodes.search_node.main_search_node:search_llm_node:48 - LLM output in search_llm_node: content='' additional_kwargs={} response_metadata={'model': 'llama3.2', 'created_at': '2025-07-18T15:01:14.193985Z', 'done': True, 'done_reason': 'stop', 'total_duration': 2478886541, 'load_duration': 728522333, 'prompt_eval_count': 621, 'prompt_eval_duration': 1328202291, 'eval_count': 22, 'eval_duration': 420419667, 'model_name': 'llama3.2'} id='run--049577ab-3bed-4fdf-9310-6d3839bbe6b3-0' tool_calls=[{'name': 'search_tool', 'args': {'query': 'USD to EUR current exchange rate'}, 'id': '49c67273-32b3-4882-a3ae-9fffa273f356', 'type': 'tool_call'}] usage_metadata={'input_tokens': 621, 'output_tokens': 22, 'total_tokens': 643}
+2025-07-18 08:01:14.203 | INFO     | helpers.searching.search_operations:_search_tool_inner:17 - Successfully initialized Tavily client.
+2025-07-18 08:01:16.452 | INFO     | helpers.searching.search_operations:_search_tool_inner:22 - Successfully retrieved searching results
+2025-07-18 08:01:16,822 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-07-18 08:01:18.043 | INFO     | graph_nodes.search_node.main_search_node:search_llm_node:48 - LLM output in search_llm_node: content='The current exchange rate between USD and EUR is approximately 1 USD = 0.86 EUR. Please note that exchange rates can fluctuate constantly and may be different at the time of your inquiry. For the most up-to-date and accurate exchange rate, I recommend checking a reliable financial service or website.' additional_kwargs={} response_metadata={'model': 'llama3.2', 'created_at': '2025-07-18T15:01:18.041542Z', 'done': True, 'done_reason': 'stop', 'total_duration': 1524338334, 'load_duration': 53125667, 'prompt_eval_count': 580, 'prompt_eval_duration': 248915667, 'eval_count': 62, 'eval_duration': 1220538375, 'model_name': 'llama3.2'} id='run--2ebaf7e5-489e-457d-bf17-e8f178912ca4-0' usage_metadata={'input_tokens': 580, 'output_tokens': 62, 'total_tokens': 642}
+2025-07-18 08:01:18,105 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/embed "HTTP/1.1 200 OK"
